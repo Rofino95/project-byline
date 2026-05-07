@@ -82,6 +82,16 @@ const { topic, articles } = Astro.props;
 
 <Layout>
   <main class="page">
+    <header class="topbar">
+      <a href="/" class="brand">Project Byline</a>
+
+      <button class="menu" aria-label="Menü">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
     <section
       class="hero"
       style={`--topic-bg:${topic.color}; --topic-text:${topic.text};`}
@@ -106,7 +116,7 @@ const { topic, articles } = Astro.props;
           ))}
         </div>
       ) : (
-        <p>Noch keine Artikel vorhanden.</p>
+        <p class="empty-state">Noch keine Artikel vorhanden.</p>
       )}
     </section>
   </main>
@@ -125,6 +135,42 @@ const { topic, articles } = Astro.props;
   .page {
     padding: 24px;
     min-height: 100vh;
+  }
+
+  .topbar {
+    max-width: 1400px;
+    margin: 0 auto 22px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.10);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    color: #151515;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .menu {
+    width: 34px;
+    height: 26px;
+    border: 0;
+    background: transparent;
+    display: grid;
+    gap: 4px;
+    cursor: pointer;
+    padding: 3px;
+  }
+
+  .menu span {
+    display: block;
+    height: 1.5px;
+    background: #151515;
+    border-radius: 999px;
   }
 
   .hero {
@@ -161,9 +207,12 @@ const { topic, articles } = Astro.props;
     line-height: 1.7;
   }
 
-  .article-grid {
+  .articles {
     max-width: 1400px;
     margin: 0 auto;
+  }
+
+  .article-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 18px;
@@ -204,6 +253,13 @@ const { topic, articles } = Astro.props;
 
   .article-card p {
     line-height: 1.6;
+  }
+
+  .empty-state {
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 18px;
+    padding: 24px;
+    background: rgba(255,255,255,0.35);
   }
 
   @media (max-width: 900px) {
