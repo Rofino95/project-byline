@@ -1,0 +1,131 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+
+  return articles.map((article) => ({
+    params: {
+      slug: article.id.replace(/\.md$/, ''),
+    },
+    props: {
+      article,
+    },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+---
+
+<Layout>
+  <main class="article-page">
+    <article class="article">
+      <p class="meta">
+        {article.data.category} • {article.data.date}
+      </p>
+
+      <h1>{article.data.title}</h1>
+
+      <p class="description">
+        {article.data.description}
+      </p>
+
+      <div class="content">
+        <Content />
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap');
+
+  :global(body) {
+    margin: 0;
+    background: #f4f1ec;
+    color: #151515;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .article-page {
+    padding: 60px 24px 120px;
+  }
+
+  .article {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .meta {
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    color: #7a7168;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 6vw, 5.6rem);
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+    margin: 0 0 22px;
+  }
+
+  .description {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #5d554d;
+    margin-bottom: 50px;
+  }
+
+  .content {
+    font-size: 1.08rem;
+    line-height: 1.95;
+  }
+
+  .content :global(h2) {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    margin-top: 70px;
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+
+  .content :global(p) {
+    margin-bottom: 1.6rem;
+  }
+
+  .content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 40px 0;
+    font-size: 0.95rem;
+  }
+
+  .content :global(th),
+  .content :global(td) {
+    border-bottom: 1px solid rgba(0,0,0,0.14);
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .content :global(th) {
+    font-weight: 700;
+  }
+
+  @media (max-width: 700px) {
+    .article-page {
+      padding: 40px 20px 90px;
+    }
+
+    .content {
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+  }
+</style>
