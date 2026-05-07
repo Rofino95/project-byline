@@ -2,81 +2,79 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const topics = [
-  {
-    slug: 'wirtschaft',
-    title: 'Wirtschaft',
-    color: '#F3E3B2',
-    text: '#7A5A13',
-    description: 'Hintergründe, Analysen und Geschichten über Märkte, Unternehmen und wirtschaftliche Entwicklungen.',
-  },
-  {
-    slug: 'politik',
-    title: 'Politik',
-    color: '#C9D8E8',
-    text: '#1F4C72',
-    description: 'Einordnungen, Debatten und politische Entwicklungen jenseits schneller Schlagzeilen.',
-  },
-  {
-    slug: 'umwelt-klima',
-    title: 'Umwelt & Klima',
-    color: '#CEDDC8',
-    text: '#315E3A',
-    description: 'Geschichten über Klima, Natur, Nachhaltigkeit und den Umgang mit unserer Umwelt.',
-  },
-  {
-    slug: 'sport',
-    title: 'Sport',
-    color: '#E4B8AE',
-    text: '#7A2A22',
-    description: 'Sportliche Geschichten, Analysen und Beobachtungen abseits reiner Ergebnisberichte.',
-  },
-  {
-    slug: 'geschichte-kultur',
-    title: 'Geschichte & Kultur',
-    color: '#D8C1A8',
-    text: '#5B3D22',
-    description: 'Texte über Erinnerung, Kultur, Gesellschaft und historische Zusammenhänge.',
-  },
-  {
-    slug: 'technik-wissenschaft',
-    title: 'Technik & Wissenschaft',
-    color: '#C9C9C6',
-    text: '#202020',
-    description: 'Technologische Entwicklungen, wissenschaftliche Themen und ihre Bedeutung für den Alltag.',
-  },
-  {
-    slug: 'mensch-tier',
-    title: 'Mensch & Tier',
-    color: '#E7C1CB',
-    text: '#743846',
-    description: 'Geschichten über Menschen, Tiere und das Verhältnis zwischen beiden.',
-  },
-  {
-    slug: 'tagebuch',
-    title: 'Tagebuch',
-    color: '#E8E3DC',
-    text: '#746A60',
-    description: 'Alltagsgeschichten, persönliche Beobachtungen und erzählte Momente.',
-  },
-];
-
 export async function getStaticPaths() {
+  const topics = [
+    {
+      slug: 'wirtschaft',
+      title: 'Wirtschaft',
+      color: '#F3E3B2',
+      text: '#7A5A13',
+      description: 'Hintergründe, Analysen und Geschichten über Märkte und Unternehmen.',
+    },
+    {
+      slug: 'politik',
+      title: 'Politik',
+      color: '#C9D8E8',
+      text: '#1F4C72',
+      description: 'Politische Entwicklungen, Debatten und Einordnungen.',
+    },
+    {
+      slug: 'umwelt-klima',
+      title: 'Umwelt & Klima',
+      color: '#CEDDC8',
+      text: '#315E3A',
+      description: 'Texte über Umwelt, Klima und Nachhaltigkeit.',
+    },
+    {
+      slug: 'sport',
+      title: 'Sport',
+      color: '#E4B8AE',
+      text: '#7A2A22',
+      description: 'Geschichten, Analysen und Beobachtungen aus dem Sport.',
+    },
+    {
+      slug: 'geschichte-kultur',
+      title: 'Geschichte & Kultur',
+      color: '#D8C1A8',
+      text: '#5B3D22',
+      description: 'Geschichte, Kultur und gesellschaftliche Entwicklungen.',
+    },
+    {
+      slug: 'technik-wissenschaft',
+      title: 'Technik & Wissenschaft',
+      color: '#C9C9C6',
+      text: '#202020',
+      description: 'Technologie, Wissenschaft und digitale Entwicklungen.',
+    },
+    {
+      slug: 'mensch-tier',
+      title: 'Mensch & Tier',
+      color: '#E7C1CB',
+      text: '#743846',
+      description: 'Geschichten über Menschen, Tiere und Alltag.',
+    },
+    {
+      slug: 'tagebuch',
+      title: 'Tagebuch',
+      color: '#E8E3DC',
+      text: '#746A60',
+      description: 'Persönliche Geschichten und Beobachtungen.',
+    },
+  ];
+
   const articles = await getCollection('articles');
 
-  return topics.map((topic) => {
-    const topicArticles = articles
-      .filter((article) => article.data.category === topic.slug)
-      .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
-
-    return {
-      params: { slug: topic.slug },
-      props: {
-        topic,
-        articles: topicArticles,
-      },
-    };
-  });
+  return topics.map((topic) => ({
+    params: {
+      slug: topic.slug,
+    },
+    props: {
+      topic,
+      articles: articles.filter(
+        (article) => article.data.category === topic.slug
+      ),
+    },
+  }));
 }
 
 const { topic, articles } = Astro.props;
@@ -84,54 +82,38 @@ const { topic, articles } = Astro.props;
 
 <Layout>
   <main class="page">
-    <header class="topbar">
-      <a href="/" class="brand">Project Byline</a>
-
-      <button class="menu" aria-label="Menü">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </header>
-
     <section
-      class="topic-hero"
-      style={`--topic-bg: ${topic.color}; --topic-text: ${topic.text};`}
+      class="hero"
+      style={`--topic-bg:${topic.color}; --topic-text:${topic.text};`}
     >
       <p class="eyebrow">Themengebiet</p>
       <h1>{topic.title}</h1>
-      <p class="subtitle">{topic.description}</p>
+      <p class="description">{topic.description}</p>
     </section>
 
-    <section class="article-section">
-      <div class="section-head">
-        <p>Artikel</p>
-        <h2>{articles.length} Beiträge</h2>
-      </div>
-
+    <section class="articles">
       {articles.length > 0 ? (
         <div class="article-grid">
           {articles.map((article) => (
-            <a class="article-card" href={`/artikel/${article.id.replace(/\.md$/, '')}`}>
-              <p class="article-meta">{article.data.date}</p>
-              <h3>{article.data.title}</h3>
+            <a
+              class="article-card"
+              href={`/artikel/${article.id.replace(/\.md$/, '')}`}
+            >
+              <p class="meta">{article.data.date}</p>
+              <h2>{article.data.title}</h2>
               <p>{article.data.description}</p>
-              <span>Lesen →</span>
             </a>
           ))}
         </div>
       ) : (
-        <div class="empty-state">
-          <p>Noch keine Artikel veröffentlicht.</p>
-          <span>Hier erscheinen später deine Beiträge zum Thema {topic.title}.</span>
-        </div>
+        <p>Noch keine Artikel vorhanden.</p>
       )}
     </section>
   </main>
 </Layout>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap');
 
   :global(body) {
     margin: 0;
@@ -141,79 +123,24 @@ const { topic, articles } = Astro.props;
   }
 
   .page {
+    padding: 24px;
     min-height: 100vh;
-    padding: 18px 34px 28px;
   }
 
-  .topbar {
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(0,0,0,0.11);
-  }
-
-  .brand {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.28rem;
-    color: #151515;
-    text-decoration: none;
-    letter-spacing: -0.02em;
-  }
-
-  .menu {
-    width: 34px;
-    height: 26px;
-    border: 0;
-    background: transparent;
-    display: grid;
-    gap: 4px;
-    cursor: pointer;
-    padding: 3px;
-  }
-
-  .menu span {
-    display: block;
-    height: 1.5px;
-    background: #151515;
-    border-radius: 999px;
-  }
-
-  .topic-hero {
-    max-width: 1500px;
-    margin: 18px auto 22px;
-    min-height: 250px;
+  .hero {
+    max-width: 1400px;
+    margin: 0 auto 28px;
     border-radius: 22px;
-    padding: 44px;
+    padding: 42px;
     background:
-      linear-gradient(135deg, rgba(255,255,255,0.38), rgba(0,0,0,0.035)),
+      linear-gradient(135deg, rgba(255,255,255,0.34), rgba(0,0,0,0.03)),
       var(--topic-bg);
     color: var(--topic-text);
     border: 1px solid rgba(0,0,0,0.08);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .topic-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px),
-      linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px);
-    background-size: 26px 26px;
-    opacity: 0.12;
-  }
-
-  .eyebrow,
-  h1,
-  .subtitle {
-    position: relative;
-    z-index: 1;
   }
 
   .eyebrow {
-    margin: 0 0 16px;
+    margin: 0 0 10px;
     text-transform: uppercase;
     letter-spacing: 0.16em;
     font-size: 0.65rem;
@@ -222,49 +149,21 @@ const { topic, articles } = Astro.props;
 
   h1 {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(4rem, 8vw, 8rem);
-    line-height: 0.88;
-    margin: 0;
+    font-size: clamp(4rem, 7vw, 7rem);
+    line-height: 0.9;
     letter-spacing: -0.06em;
-  }
-
-  .subtitle {
-    max-width: 760px;
-    margin: 22px 0 0;
-    font-size: 1.05rem;
-    line-height: 1.6;
-  }
-
-  .article-section {
-    max-width: 1500px;
-    margin: 0 auto;
-  }
-
-  .section-head {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    border-top: 1px solid rgba(0,0,0,0.12);
-    padding-top: 16px;
-    margin-bottom: 16px;
-  }
-
-  .section-head p {
     margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    font-size: 0.62rem;
-    font-weight: 700;
-    color: #7a7168;
   }
 
-  .section-head h2 {
-    margin: 0;
-    font-size: 0.96rem;
-    font-weight: 600;
+  .description {
+    max-width: 700px;
+    margin-top: 18px;
+    line-height: 1.7;
   }
 
   .article-grid {
+    max-width: 1400px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 18px;
@@ -272,76 +171,42 @@ const { topic, articles } = Astro.props;
 
   .article-card {
     display: block;
-    min-height: 220px;
     padding: 24px;
     border-radius: 18px;
-    background: rgba(255,255,255,0.34);
-    border: 1px solid rgba(0,0,0,0.1);
-    color: #151515;
     text-decoration: none;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    color: #151515;
+    background: rgba(255,255,255,0.35);
+    border: 1px solid rgba(0,0,0,0.08);
+    transition: 0.18s ease;
   }
 
   .article-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 16px 36px rgba(0,0,0,0.08);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.08);
   }
 
-  .article-meta {
-    margin: 0 0 18px;
-    font-size: 0.68rem;
+  .meta {
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    font-weight: 700;
     color: #7a7168;
+    font-weight: 700;
+    margin-bottom: 14px;
   }
 
-  .article-card h3 {
+  .article-card h2 {
     font-family: 'DM Serif Display', serif;
     font-size: 2rem;
     line-height: 1;
+    margin: 0 0 14px;
     letter-spacing: -0.04em;
-    margin: 0 0 16px;
   }
 
   .article-card p {
-    color: #5d554d;
     line-height: 1.6;
   }
 
-  .article-card span {
-    display: inline-block;
-    margin-top: 18px;
-    font-weight: 700;
-  }
-
-  .empty-state {
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 18px;
-    padding: 28px;
-    background: rgba(255,255,255,0.28);
-  }
-
-  .empty-state p {
-    margin: 0 0 8px;
-    font-weight: 700;
-  }
-
-  .empty-state span {
-    color: #6b6258;
-  }
-
-  @media (max-width: 1000px) {
-    .article-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 650px) {
-    .page {
-      padding: 16px;
-    }
-
+  @media (max-width: 900px) {
     .article-grid {
       grid-template-columns: 1fr;
     }
