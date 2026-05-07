@@ -1,5 +1,5 @@
 ---
-title: "Nostalgie im Kopf: Warum Kindheitsdinge uns ein Leben lang berühren"
+title: "Nostalgie im Kopf"
 description: "Wie Gerüche, Musik und Erinnerungen im Gehirn zusammenfinden – und warum Kindheitsmomente ihre emotionale Kraft behalten."
 date: "2026-05-08"
 category: "mensch-tier"
