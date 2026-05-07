@@ -7,8 +7,6 @@ author: "Project Byline"
 featured: true
 ---
 
-# Photonik einfach erklärt
-
 ## Was Photonik eigentlich ist
 
 Photonik ist vereinfacht gesagt die Kunst, Licht technisch nutzbar zu machen. Es geht also nicht nur darum, dass etwas leuchtet, sondern darum, Licht gezielt zu erzeugen, zu lenken, zu formen, zu verstärken, zu messen und für Informationen zu nutzen. Wenn Elektronik mit elektrischem Strom arbeitet, arbeitet Photonik mit Licht. [1]

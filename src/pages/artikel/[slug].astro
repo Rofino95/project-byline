@@ -75,11 +75,16 @@ const { Content } = await render(article);
     margin: 0 0 22px;
   }
 
-  .description {
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: #5d554d;
-    margin-bottom: 50px;
+  ..description {
+  max-width: 720px;
+  font-size: 1.28rem;
+  line-height: 1.85;
+  color: #6b6258;
+  margin: 28px 0 64px;
+  padding-left: 22px;
+  border-left: 2px solid rgba(0,0,0,0.16);
+  font-style: italic;
+  font-family: 'DM Serif Display', serif;
   }
 
   .content {
@@ -88,11 +93,13 @@ const { Content } = await render(article);
   }
 
   .content :global(h2) {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.2rem;
-    margin-top: 70px;
-    margin-bottom: 20px;
-    line-height: 1;
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.2rem;
+  margin-top: 76px;
+  margin-bottom: 22px;
+  line-height: 1;
+  padding-top: 34px;
+  border-top: 1px solid rgba(0,0,0,0.14);
   }
 
   .content :global(p) {
