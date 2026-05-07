@@ -1,0 +1,188 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <main class="page">
+    <header class="topbar">
+      <a href="/" class="brand">Project Byline</a>
+
+      <button class="menu" aria-label="Menü">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <section class="topic-hero">
+      <p class="eyebrow">Themengebiet</p>
+      <h1>Wirtschaft</h1>
+      <p class="subtitle">
+        Hintergründe, Analysen und Geschichten über Märkte, Unternehmen und wirtschaftliche Entwicklungen.
+      </p>
+    </section>
+
+    <section class="article-section">
+      <div class="section-head">
+        <p>Artikel</p>
+        <h2>Neueste Beiträge</h2>
+      </div>
+
+      <div class="empty-state">
+        <p>Noch keine Artikel veröffentlicht.</p>
+        <span>Hier erscheinen später deine Beiträge zum Thema Wirtschaft.</span>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
+
+  :global(body) {
+    margin: 0;
+    background: #f4f1ec;
+    color: #151515;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .page {
+    min-height: 100vh;
+    padding: 18px 34px 28px;
+  }
+
+  .topbar {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0,0,0,0.11);
+  }
+
+  .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.28rem;
+    color: #151515;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .menu {
+    width: 34px;
+    height: 26px;
+    border: 0;
+    background: transparent;
+    display: grid;
+    gap: 4px;
+    cursor: pointer;
+    padding: 3px;
+  }
+
+  .menu span {
+    display: block;
+    height: 1.5px;
+    background: #151515;
+    border-radius: 999px;
+  }
+
+  .topic-hero {
+    max-width: 1500px;
+    margin: 18px auto 22px;
+    min-height: 260px;
+    border-radius: 22px;
+    padding: 44px;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.38), rgba(0,0,0,0.035)),
+      #F3E3B2;
+    color: #7A5A13;
+    border: 1px solid rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .topic-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px),
+      linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px);
+    background-size: 26px 26px;
+    opacity: 0.12;
+  }
+
+  .eyebrow,
+  h1,
+  .subtitle {
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow {
+    margin: 0 0 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.65rem;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(4rem, 8vw, 8rem);
+    line-height: 0.88;
+    margin: 0;
+    letter-spacing: -0.06em;
+  }
+
+  .subtitle {
+    max-width: 720px;
+    margin: 22px 0 0;
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .article-section {
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    border-top: 1px solid rgba(0,0,0,0.12);
+    padding-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .section-head p {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: #7a7168;
+  }
+
+  .section-head h2 {
+    margin: 0;
+    font-size: 0.96rem;
+    font-weight: 600;
+  }
+
+  .empty-state {
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 18px;
+    padding: 28px;
+    background: rgba(255,255,255,0.28);
+  }
+
+  .empty-state p {
+    margin: 0 0 8px;
+    font-weight: 700;
+  }
+
+  .empty-state span {
+    color: #6b6258;
+  }
+</style>
