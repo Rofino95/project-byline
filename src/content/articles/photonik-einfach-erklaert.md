@@ -85,7 +85,7 @@ Gerade deshalb dürfte Photonik in den kommenden Jahren immer sichtbarer werden.
 ## Quellenbasis 
 
 1. **Europäische Kommission, „Photonics“** – Definition von Photonik, Alltagsbeispiele, Anwendungsfelder sowie die Einordnung als Technologie, die dort relevant wird, wo klassische Lösungen bei Tempo, Kapazität und Genauigkeit an Grenzen stoßen. 
-2. **Photonics21 und Europäische Kommission** – Einordnung von Photonik als Schlüsseltechnologie für Europas digitale und grüne Transformation. citeturn13view0turn13view1
+2. **Photonics21 und Europäische Kommission** – Einordnung von Photonik als Schlüsseltechnologie für Europas digitale und grüne Transformation. 
 
 3. **Fraunhofer IPMS, „Integrierte Photonik“** – Beschreibung integrierter Photonik als Miniaturisierung von Laser, Wellenleitern, Modulatoren und Detektoren auf einem Chip für kompakte, leistungsstarke und energieeffiziente Systeme. 
 
