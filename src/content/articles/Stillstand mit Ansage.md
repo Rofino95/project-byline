@@ -1,6 +1,6 @@
 ---
 title: "Stillstand mit Ansage"
-description: "Deutschlands Wirtschafts Stagnation hat tiefe Ursachen."
+description: "Deutschlands wirtschafts Stagnation hat tiefe Ursachen."
 date: "2026-05-08"
 category: "wirtschaft"
 author: "Project Byline"
