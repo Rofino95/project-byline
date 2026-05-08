@@ -7,7 +7,7 @@ author: "Project Byline"
 featured: false
 ---
 
-# Nostalgie im Kopf: Warum Kindheitsdinge uns ein Leben lang berühren
+## Nostalgie im Kopf: Warum Kindheitsdinge uns ein Leben lang berühren
 
 Es braucht oft erstaunlich wenig: den Geruch von Sonnenmilch, den Klang einer alten Titelmelodie, den Geschmack eines Urlaubsessens, den Stoff eines Pullovers aus längst vergangenen Wintern. Solche Reize wirken nicht deshalb so stark, weil wir sentimental wären. Sie treffen im Gehirn auf ein System, das Erinnerung, Gefühl und Selbstbild eng miteinander verschaltet – und genau deshalb in Sekunden eine ganze Welt wieder öffnen kann. 
 

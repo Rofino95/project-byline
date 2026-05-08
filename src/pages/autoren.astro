@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const authors = [
+  {
+    initials: 'RZ',
+    name: 'Rudolf Zimmer',
+    role: 'Redaktion, Technik, Wirtschaft und Analyse',
+  },
+];
+---
+
+<Layout>
+  <main class="page">
+    <header class="topbar">
+      <a href="/" class="brand">Project Byline</a>
+
+      <a href="/" class="back-link">Startseite</a>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">Project Byline</p>
+      <h1>Autor:innen</h1>
+      <p class="description">
+        Eine Übersicht der Kürzel, die in den Artikeln von Project Byline verwendet werden.
+      </p>
+    </section>
+
+    <section class="authors-list">
+      {authors.map((author) => (
+        <article class="author-card">
+          <div class="initials">{author.initials}</div>
+
+          <div>
+            <h2>{author.name}</h2>
+            <p>{author.role}</p>
+          </div>
+        </article>
+      ))}
+    </section>
+  </main>
+</Layout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
+
+  :global(body) {
+    margin: 0;
+    background: #f4f1ec;
+    color: #151515;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .page {
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  .topbar {
+    max-width: 1100px;
+    margin: 0 auto 56px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.10);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: #151515;
+    letter-spacing: -0.02em;
+  }
+
+  .back-link {
+    text-decoration: none;
+    color: #7a7168;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto 48px;
+  }
+
+  .eyebrow {
+    margin: 0 0 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #7a7168;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 0.9;
+    letter-spacing: -0.06em;
+    margin: 0;
+  }
+
+  .description {
+    max-width: 620px;
+    margin: 24px 0 0;
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: #6b6258;
+    padding-left: 22px;
+    border-left: 2px solid rgba(0,0,0,0.16);
+  }
+
+  .authors-list {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    gap: 16px;
+  }
+
+  .author-card {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 24px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.35);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .initials {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #151515;
+    color: #f4f1ec;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    letter-spacing: -0.04em;
+  }
+
+  .author-card h2 {
+    margin: 0 0 6px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    letter-spacing: -0.04em;
+  }
+
+  .author-card p {
+    margin: 0;
+    color: #6b6258;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 650px) {
+    .author-card {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

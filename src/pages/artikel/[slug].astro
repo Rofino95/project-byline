@@ -25,6 +25,10 @@ const { Content } = await render(article);
     <header class="topbar">
       <a href="/" class="brand">Project Byline</a>
 
+      <a href="/autoren" class="author-link">
+        {article.data.author}
+      </a>
+
       <a
         href={`/themen/${article.data.category}`}
         class="category-link"
@@ -32,7 +36,7 @@ const { Content } = await render(article);
         {article.data.category}
       </a>
     </header>
-
+    
     <article class="article">
       <p class="meta">
         {article.data.date}
@@ -71,9 +75,10 @@ const { Content } = await render(article);
     margin: 0 auto 56px;
     padding-bottom: 16px;
     border-bottom: 1px solid rgba(0,0,0,0.10);
-    display: flex;
+    display: grid;
     align-items: center;
-    justify-content: space-between;
+    grid-template-columns: 1fr auto 1fr;
+    justify-content: center;
   }
 
   .brand {
@@ -83,8 +88,23 @@ const { Content } = await render(article);
     color: #151515;
     letter-spacing: -0.02em;
   }
+  .author-link {
+    text-decoration: none;
+    color: #7a7168;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    transition: opacity 0.18s ease;
+  }
+
+  .author-link:hover {
+    opacity: 0.6;
+    text-decoration: underline;
+  }
 
   .category-link {
+    justify-self: end;
     text-decoration: none;
     color: #7a7168;
     text-transform: uppercase;

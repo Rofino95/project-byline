@@ -7,7 +7,7 @@ author: "Project Byline"
 featured: false
 ---
 
-# Stillstand mit Ansage: Warum Deutschlands Wirtschaft nicht vom Fleck kommt
+## Stillstand mit Ansage: Warum Deutschlands Wirtschaft nicht vom Fleck kommt
 
 Deutschlands Wirtschaft wirkt inzwischen wie ein Motor im Leerlauf: viel Lärm, wenig Tempo. Nach einem Rückgang des realen Bruttoinlandsprodukts um 0,3 Prozent im Jahr 2023 und um 0,2 Prozent im Jahr 2024 folgte 2025 nur ein Mini-Plus von 0,2 Prozent. Im ersten Quartal 2026 legte die Wirtschaftsleistung zwar noch einmal um 0,3 Prozent zum Vorquartal zu, doch die EU-Kommission ordnet die Entwicklung weiter als lange Phase der Stagnation ein; das reale BIP lag 2024 grob auf dem Niveau von 2019. 
 
