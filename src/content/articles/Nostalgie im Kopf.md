@@ -9,7 +9,7 @@ featured: false
 
 ## Nostalgie im Kopf: Warum Kindheitsdinge uns ein Leben lang berühren
 
-Es braucht oft erstaunlich wenig: den Geruch von Sonnenmilch, den Klang einer alten Titelmelodie, den Geschmack eines Urlaubsessens, den Stoff eines Pullovers aus längst vergangenen Wintern. Solche Reize wirken nicht deshalb so stark, weil wir sentimental wären. Sie treffen im Gehirn auf ein System, das Erinnerung, Gefühl und Selbstbild eng miteinander verschaltet – und genau deshalb in Sekunden eine ganze Welt wieder öffnen kann. 
+Es braucht oft erstaunlich wenig: den Geruch von Sonnenmilch, den Klang einer alten Titelmelodie, den Geschmack eines Urlaubsessens, den Stoff eines Pullovers aus längst vergangenen Wintern. Solche Reize wirken nicht deshalb so stark, weil wir sentimental wären. Sie treffen im Gehirn auf ein System, das Erinnerung, Gefühl und Selbstbild eng miteinander verschaltet, und genau deshalb in Sekunden eine ganze Welt wieder öffnen kann. 
 
 Nostalgie gilt in der Forschung längst nicht mehr als kitschige Rückwärtsbewegung, sondern als eigene Form des Erlebens: bittersüß, aber überwiegend positiv, eng mit autobiografischen Erinnerungen verbunden und erstaunlich häufig sozial geprägt. Wenn Menschen nostalgisch werden, denken sie oft nicht nur an Dinge, sondern an Nähe, Zugehörigkeit und an Versionen ihres eigenen Lebens, die sich einmal sicher und stimmig angefühlt haben. Gerade das macht Nostalgie so wirksam. 
 
@@ -35,7 +35,7 @@ Bei Musik läuft etwas Ähnliches ab, nur über einen anderen Sinneskanal. Liede
 
 ## Was das Gehirn in solchen Momenten tut
 
-Bildgebende Studien zeichnen inzwischen ein ziemlich klares Muster. An Nostalgie beteiligt sind Hirnregionen, die Selbstreflexion und innere Erzählung unterstützen, darunter medialer präfrontaler Cortex, posteriorer cingulärer Cortex und Precuneus. Hinzu kommen klassische Gedächtnisstrukturen wie der Hippocampus sowie Regionen, die emotionale Bewertung und Belohnung verarbeiten – etwa anteriorer cingulärer Cortex, ventromedialer präfrontaler Cortex, Striatum, Substantia nigra und ventrales Tegmentum. Vereinfacht gesagt: Nostalgie ist im Gehirn gleichzeitig Erinnern, Einordnen und Belohnen. 
+Bildgebende Studien zeichnen inzwischen ein ziemlich klares Muster. An Nostalgie beteiligt sind Hirnregionen, die Selbstreflexion und innere Erzählung unterstützen, darunter medialer präfrontaler Cortex, posteriorer cingulärer Cortex und Precuneus. Hinzu kommen klassische Gedächtnisstrukturen wie der Hippocampus sowie Regionen, die emotionale Bewertung und Belohnung verarbeiten - etwa anteriorer cingulärer Cortex, ventromedialer präfrontaler Cortex, Striatum, Substantia nigra und ventrales Tegmentum. Vereinfacht gesagt: Nostalgie ist im Gehirn gleichzeitig Erinnern, Einordnen und Belohnen. 
 
 Dass diese Systeme tatsächlich zusammenarbeiten, ist mehr als eine hübsche Metapher. Eine fMRT-Studie mit kindheitsbezogenen Reizen zeigte Aktivität in Gedächtnis- und Belohnungsnetzwerken zugleich und fand eine Kopplung zwischen Hippocampus und ventralem Striatum. Eine neuere Studie zu musikinduzierter Nostalgie berichtet zusätzlich Aktivierungen im Default-Mode-Netzwerk, im Belohnungsnetzwerk und im medialen Temporallappen. Das hilft zu verstehen, warum eine alte Erinnerung nicht nur auftaucht, sondern sich im selben Moment noch gut, nah und bedeutsam anfühlen kann. 
 
@@ -48,4 +48,4 @@ Deshalb interessiert sich auch die angewandte Forschung für Nostalgie. Reviews 
 
 Die emotionale Macht von Kindheitsdingen ist kein Zufall. Sie entsteht dort, wo das Gehirn Erinnerungen nicht isoliert speichert, sondern mit Geruch, Klang, Bindung, Körpergefühl und Selbstbild verknüpft. Deshalb kann ein alter Geschmack mehr auslösen als ein ganzer Abend des Grübelns. Und deshalb fühlen sich manche Reize nicht an wie bloße Informationen über die Vergangenheit, sondern wie ein kurzer Durchgang dorthin. 
 
-Nostalgie ist in diesem Sinn keine Flucht vor dem Jetzt. Sie ist ein präziser, manchmal überwältigender Mechanismus, mit dem das Gehirn Vergangenheit in Gegenwart übersetzt. Was aus der Kindheit bleibt, bleibt also nicht nur, weil es alt ist. Es bleibt, weil es einmal wichtig war – für Nähe, für Orientierung, für Identität. Und weil das Gehirn genau solche Dinge besonders hartnäckig bewahrt. 
+Nostalgie ist in diesem Sinn keine Flucht vor dem Jetzt. Sie ist ein präziser, manchmal überwältigender Mechanismus, mit dem das Gehirn Vergangenheit in Gegenwart übersetzt. Was aus der Kindheit bleibt, bleibt also nicht nur, weil es alt ist. Es bleibt, weil es einmal wichtig war, für Nähe, für Orientierung und für Identität. Und weil das Gehirn genau solche Dinge besonders hartnäckig bewahrt. 
