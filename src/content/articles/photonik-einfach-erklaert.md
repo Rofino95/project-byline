@@ -3,7 +3,7 @@ title: "Photonik einfach erklärt"
 description: "Warum Photonik immer wichtiger wird."
 date: "2026-05-07"
 category: "technik-wissenschaft"
-author: "Project Byline"
+author: "RZ"
 featured: true
 ---
 

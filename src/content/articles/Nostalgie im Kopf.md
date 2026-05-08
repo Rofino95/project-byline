@@ -3,7 +3,7 @@ title: "Nostalgie im Kopf"
 description: "Warum Kindheitsmomente ihre emotionale Kraft behalten."
 date: "2026-05-08"
 category: "mensch-tier"
-author: "Project Byline"
+author: "RZ"
 featured: false
 ---
 
