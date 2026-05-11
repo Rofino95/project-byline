@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const authorList = {
+  const authors = {
     rz: {
       initials: 'RZ',
       name: 'Rudolf Zimmer',
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
   const articles = await getCollection('articles');
 
-  return Object.entries(authorList).map(([slug, author]) => {
+  return Object.entries(authors).map(([slug, author]) => {
     const authorArticles = articles
       .filter((article) => article.data.author.toLowerCase() === author.initials.toLowerCase())
       .sort(
