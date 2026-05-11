@@ -2,74 +2,56 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-export async function getStaticPaths() {
-  const authors = {
-    rz: {
-      initials: 'RZ',
-      name: 'Rudolf Zimmer',
-      role: 'Redaktion, Technik, Wirtschaft und Analyse',
-    },
-  };
-
-  const articles = await getCollection('articles');
-
-  return Object.entries(authors).map(([slug, author]) => {
-    const authorArticles = articles
-      .filter((article) => article.data.author.toLowerCase() === author.initials.toLowerCase())
-      .sort(
-        (a, b) =>
-          new Date(b.data.date).getTime() -
-          new Date(a.data.date).getTime()
-      );
-
-    return {
-      params: {
-        initials: slug,
-      },
-      props: {
-        author,
-        articles: authorArticles,
-      },
-    };
-  });
-}
-
-const { author, articles } = Astro.props;
+const articles = await getCollection('articles');
 
 const categoryMeta = {
   wirtschaft: {
     label: 'WIRTSCHAFT',
     color: '#7A5A13',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5v4"/><rect width="4" height="6" x="7" y="9" rx="1"/><path d="M9 15v2"/><path d="M17 3v2"/><rect width="4" height="8" x="15" y="5" rx="1"/><path d="M17 13v3"/><path d="M3 3v16a2 2 0 0 0 2 2h16"/></svg>',
   },
   politik: {
     label: 'POLITIK',
     color: '#1F4C72',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/><path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M7 21h10"/></svg>',
   },
   'umwelt-klima': {
     label: 'UMWELT & KLIMA',
     color: '#315E3A',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/></svg>',
   },
   sport: {
     label: 'SPORT',
     color: '#7A2A22',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"/><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"/><path d="M18 9h1.5a1 1 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"/><path d="M6 9H4.5a1 1 0 0 1 0-5H6"/></svg>',
   },
   'geschichte-kultur': {
     label: 'GESCHICHTE & KULTUR',
     color: '#5B3D22',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18v-7"/><path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M3 22h18"/><path d="M6 18v-7"/></svg>',
   },
   'technik-wissenschaft': {
     label: 'TECHNIK-WISSENSCHAFT',
     color: '#202020',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/></svg>',
   },
   'mensch-tier': {
     label: 'MENSCH-TIER',
     color: '#743846',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10 16 1.5 1.5"/><path d="m14 8-1.5-1.5"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/><path d="m16.5 10.5 1 1"/><path d="m17 6-2.891-2.891"/><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="m20 9 .891.891"/><path d="M3.109 14.109 4 15"/><path d="m6.5 12.5 1 1"/><path d="m7 18 2.891 2.891"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/></svg>',
   },
   tagebuch: {
     label: 'TAGEBUCH',
     color: '#746A60',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg>',
   },
 };
+
+const sortedArticles = articles.sort(
+  (a, b) =>
+    new Date(b.data.date).getTime() -
+    new Date(a.data.date).getTime()
+);
 ---
 
 <Layout>
@@ -94,59 +76,84 @@ const categoryMeta = {
     </header>
 
     <section class="hero">
-      <p class="eyebrow">Autor:in</p>
-
-      <div class="author-head">
-        <div class="initials">{author.initials}</div>
-
-        <div>
-          <h1>{author.name}</h1>
-          <p>{author.role}</p>
-        </div>
-      </div>
+      <h1>Alle Artikel</h1>
+      <p>Eine Übersicht aller veröffentlichten Beiträge auf Project Byline.</p>
     </section>
 
-    <section class="section-head">
-      <p>Beiträge</p>
-      <h2>{articles.length} Artikel</h2>
+    <section class="search-wrap">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Artikel suchen..."
+      />
     </section>
 
     <section class="article-list">
-      {articles.length > 0 ? (
-        articles.map((article) => {
-          const meta = categoryMeta[article.data.category] ?? {
-            label: article.data.category.toUpperCase(),
-            color: '#7a7168',
-          };
+      {sortedArticles.map((article) => {
+        const meta = categoryMeta[article.data.category] ?? {
+          label: article.data.category.toUpperCase(),
+          color: '#7a7168',
+          icon: '',
+        };
 
-          return (
-            <a
-              class="article-card"
-              href={`/artikel/${article.id.replace(/\.md$/, '')}`}
-            >
+        return (
+          <a
+            class="article-card"
+            href={`/artikel/${article.id.replace(/\.md$/, '')}`}
+            data-title={article.data.title.toLowerCase()}
+            data-description={article.data.description.toLowerCase()}
+            data-category={article.data.category.toLowerCase()}
+            data-author={article.data.author.toLowerCase()}
+          >
+            <div>
               <p class="meta" style={`--meta-color:${meta.color};`}>
-                <span>{meta.label}</span>
+                <span class="meta-topic">
+                  <span class="meta-icon" set:html={meta.icon} />
+                  <span>{meta.label}</span>
+                </span>
+
                 <span class="meta-separator">·</span>
                 <span>{article.data.date}</span>
+                <span class="meta-separator">·</span>
+                <span>{article.data.author}</span>
               </p>
 
-              <h3>{article.data.title}</h3>
+              <h2>{article.data.title}</h2>
 
               <p class="card-description">
                 {article.data.description}
               </p>
+            </div>
 
-              <span class="read-more">Lesen →</span>
-            </a>
-          );
-        })
-      ) : (
-        <div class="empty-state">
-          <p>Noch keine Artikel vorhanden.</p>
-          <span>Hier erscheinen später alle Beiträge von {author.initials}.</span>
-        </div>
-      )}
+            <span class="read-more">Lesen →</span>
+          </a>
+        );
+      })}
     </section>
+
+    <script is:inline>
+      const searchInput = document.getElementById('searchInput');
+      const cards = document.querySelectorAll('.article-card');
+
+      searchInput.addEventListener('input', () => {
+        const value = searchInput.value.toLowerCase();
+
+        cards.forEach((card) => {
+          const title = card.dataset.title || '';
+          const description = card.dataset.description || '';
+          const category = card.dataset.category || '';
+          const author = card.dataset.author || '';
+
+          const match =
+            title.includes(value) ||
+            description.includes(value) ||
+            category.includes(value) ||
+            author.includes(value);
+
+          card.style.display = match ? 'flex' : 'none';
+        });
+      });
+    </script>
   </main>
 </Layout>
 
@@ -244,77 +251,45 @@ const categoryMeta = {
   .hero {
     max-width: 1500px;
     margin: 0 auto;
-    padding: 62px 0 42px;
-  }
-
-  .eyebrow {
-    margin: 0 0 18px;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    font-size: 0.62rem;
-    font-weight: 700;
-    color: #7a7168;
-  }
-
-  .author-head {
-    display: flex;
-    align-items: center;
-    gap: 26px;
-  }
-
-  .initials {
-    width: 88px;
-    height: 88px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    background: #151515;
-    color: #f4f1ec;
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.15rem;
-    letter-spacing: -0.04em;
-    flex-shrink: 0;
+    padding: 62px 0 28px;
   }
 
   h1 {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(3.4rem, 7vw, 6.4rem);
+    font-size: clamp(3.8rem, 7vw, 6.8rem);
     line-height: 0.9;
-    letter-spacing: -0.055em;
+    letter-spacing: -0.045em;
     margin: 0;
   }
 
   .hero p {
     max-width: 720px;
-    margin: 14px 0 0;
+    margin: 24px 0 0;
     color: #6b6258;
     font-size: 1.08rem;
     line-height: 1.7;
   }
 
-  .section-head {
+  .search-wrap {
     max-width: 1500px;
-    margin: 0 auto 18px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(0,0,0,0.12);
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
+    margin: 0 auto 34px;
   }
 
-  .section-head p {
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    font-size: 0.62rem;
-    font-weight: 700;
-    color: #7a7168;
+  .search-wrap input {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.10);
+    background: rgba(255,255,255,0.38);
+    border-radius: 18px;
+    padding: 18px 22px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.035);
   }
 
-  .section-head h2 {
-    margin: 0;
-    font-size: 0.96rem;
-    font-weight: 600;
+  .search-wrap input::placeholder {
+    color: #8a8279;
   }
 
   .article-list {
@@ -325,6 +300,7 @@ const categoryMeta = {
   }
 
   .article-card {
+    min-height: 112px;
     padding: 22px 30px;
     border-radius: 20px;
     background: rgba(255,255,255,0.40);
@@ -332,6 +308,10 @@ const categoryMeta = {
     box-shadow: 0 12px 30px rgba(0,0,0,0.045);
     color: #151515;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
     transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
 
@@ -353,15 +333,31 @@ const categoryMeta = {
     color: #7a7168;
   }
 
-  .meta span:first-child {
+  .meta-topic {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     color: var(--meta-color);
+  }
+
+  .meta-icon {
+    width: 15px;
+    height: 15px;
+    display: inline-flex;
+    color: var(--meta-color);
+    transform: translateY(-1px);
+  }
+
+  .meta-icon :global(svg) {
+    width: 100%;
+    height: 100%;
   }
 
   .meta-separator {
     color: rgba(0,0,0,0.28);
   }
 
-  .article-card h3 {
+  .article-card h2 {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(1.75rem, 2.5vw, 2.35rem);
     line-height: 0.98;
@@ -374,29 +370,15 @@ const categoryMeta = {
     max-width: 760px;
     line-height: 1.4;
     color: #5f5750;
-    margin: 0 0 12px;
+    margin: 0;
     font-size: 0.95rem;
   }
 
   .read-more {
     font-weight: 800;
     font-size: 0.95rem;
-  }
-
-  .empty-state {
-    padding: 28px;
-    border-radius: 18px;
-    background: rgba(255,255,255,0.35);
-    border: 1px solid rgba(0,0,0,0.08);
-  }
-
-  .empty-state p {
-    margin: 0 0 6px;
-    font-weight: 700;
-  }
-
-  .empty-state span {
-    color: #6b6258;
+    white-space: nowrap;
+    padding-bottom: 2px;
   }
 
   @media (max-width: 700px) {
@@ -404,15 +386,19 @@ const categoryMeta = {
       padding: 18px;
     }
 
-    .author-head {
-      align-items: flex-start;
-      flex-direction: column;
+    .hero {
+      padding: 44px 0 26px;
     }
 
-    .initials {
-      width: 72px;
-      height: 72px;
-      font-size: 1.8rem;
+    .article-card {
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: auto;
+      padding: 24px;
+    }
+
+    .read-more {
+      align-self: flex-end;
     }
   }
 </style>
