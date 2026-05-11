@@ -1,7 +1,7 @@
 ---
-title: "Das vergessene Weltwunder: Konstantinopel um das Jahr 1000"
+title: "Konstantinopel: Die vergessene Weltstadt"
 description: Ein Blick auf eine Metropole, die im westlichen Geschichtsbild oft zu kurz kommt."
-date: "2026-05-10"
+date: "2026-05-11"
 category: "geschichte-kultur"
 author: "RZ"
 featured: false
