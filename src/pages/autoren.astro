@@ -28,14 +28,14 @@ const authors = [
 
     <section class="authors-list">
       {authors.map((author) => (
-        <article class="author-card">
+        <a class="author-card" href={`/autoren/${author.initials.toLowerCase()}`}>
           <div class="initials">{author.initials}</div>
 
           <div>
             <h2>{author.name}</h2>
             <p>{author.role}</p>
           </div>
-        </article>
+        </a>
       ))}
     </section>
   </main>
@@ -133,6 +133,14 @@ const authors = [
     border-radius: 18px;
     background: rgba(255,255,255,0.35);
     border: 1px solid rgba(0,0,0,0.08);
+    text-decoration: none;
+    color: #151515;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .author-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 38px rgba(0,0,0,0.08);
   }
 
   .initials {
