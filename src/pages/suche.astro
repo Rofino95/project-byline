@@ -1,0 +1,476 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const articles = await getCollection('articles');
+
+const categoryMeta = {
+  wirtschaft: {
+    label: 'WIRTSCHAFT',
+    color: '#7A5A13',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5v4"/><rect width="4" height="6" x="7" y="9" rx="1"/><path d="M9 15v2"/><path d="M17 3v2"/><rect width="4" height="8" x="15" y="5" rx="1"/><path d="M17 13v3"/><path d="M3 3v16a2 2 0 0 0 2 2h16"/></svg>',
+  },
+  politik: {
+    label: 'POLITIK',
+    color: '#1F4C72',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/><path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M7 21h10"/></svg>',
+  },
+  'umwelt-klima': {
+    label: 'UMWELT & KLIMA',
+    color: '#315E3A',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/></svg>',
+  },
+  sport: {
+    label: 'SPORT',
+    color: '#7A2A22',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"/><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"/><path d="M18 9h1.5a1 1 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"/><path d="M6 9H4.5a1 1 0 0 1 0-5H6"/></svg>',
+  },
+  'geschichte-kultur': {
+    label: 'GESCHICHTE & KULTUR',
+    color: '#5B3D22',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18v-7"/><path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M3 22h18"/><path d="M6 18v-7"/></svg>',
+  },
+  'technik-wissenschaft': {
+    label: 'TECHNIK-WISSENSCHAFT',
+    color: '#202020',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/></svg>',
+  },
+  'mensch-tier': {
+    label: 'MENSCH-TIER',
+    color: '#743846',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10 16 1.5 1.5"/><path d="m14 8-1.5-1.5"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/><path d="m16.5 10.5 1 1"/><path d="m17 6-2.891-2.891"/><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="m20 9 .891.891"/><path d="M3.109 14.109 4 15"/><path d="m6.5 12.5 1 1"/><path d="m7 18 2.891 2.891"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/></svg>',
+  },
+  tagebuch: {
+    label: 'TAGEBUCH',
+    color: '#746A60',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg>',
+  },
+};
+
+const sortedArticles = articles.sort(
+  (a, b) =>
+    new Date(b.data.date).getTime() -
+    new Date(a.data.date).getTime()
+);
+---
+
+<Layout>
+  <main class="page">
+    <header class="topbar">
+      <a href="/" class="brand">Project Byline</a>
+
+      <details class="menu-wrap">
+        <summary class="menu" aria-label="Menü">
+          <span></span>
+          <span></span>
+          <span></span>
+        </summary>
+
+        <nav class="menu-panel">
+          <a href="/suche">Suche</a>
+          <a href="/artikel">Alle Artikel</a>
+          <a href="/autoren">Autor:innen</a>
+          <a href="/ueber">Über Project Byline</a>
+        </nav>
+      </details>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">Archivsuche</p>
+      <h1>Suche</h1>
+      <p>
+        Durchsuche alle veröffentlichten Beiträge nach Titel, Beschreibung oder Themengebiet.
+      </p>
+    </section>
+
+    <section class="search-wrap">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Suchbegriff eingeben..."
+        autofocus
+      />
+    </section>
+
+    <section class="result-info">
+      <p id="resultCount">{sortedArticles.length} Artikel gefunden</p>
+    </section>
+
+    <section class="article-list">
+      {sortedArticles.map((article) => {
+        const meta = categoryMeta[article.data.category] ?? {
+          label: article.data.category.toUpperCase(),
+          color: '#7a7168',
+          icon: '',
+        };
+
+        return (
+          <a
+            class="article-card"
+            href={`/artikel/${article.id.replace(/\.md$/, '')}`}
+            data-title={article.data.title.toLowerCase()}
+            data-description={article.data.description.toLowerCase()}
+            data-category={article.data.category.toLowerCase()}
+            data-author={article.data.author.toLowerCase()}
+          >
+            <div>
+              <p class="meta" style={`--meta-color:${meta.color};`}>
+                <span class="meta-topic">
+                  <span class="meta-icon" set:html={meta.icon} />
+                  <span>{meta.label}</span>
+                </span>
+
+                <span class="meta-separator">·</span>
+                <span>{article.data.date}</span>
+                <span class="meta-separator">·</span>
+                <span>{article.data.author}</span>
+              </p>
+
+              <h2>{article.data.title}</h2>
+
+              <p class="card-description">
+                {article.data.description}
+              </p>
+            </div>
+
+            <span class="read-more">Lesen →</span>
+          </a>
+        );
+      })}
+    </section>
+
+    <section class="empty-state" id="emptyState">
+      <p>Keine passenden Artikel gefunden.</p>
+      <span>Versuche es mit einem anderen Suchbegriff.</span>
+    </section>
+
+    <script is:inline>
+      const searchInput = document.getElementById('searchInput');
+      const cards = Array.from(document.querySelectorAll('.article-card'));
+      const resultCount = document.getElementById('resultCount');
+      const emptyState = document.getElementById('emptyState');
+
+      function updateSearch() {
+        const value = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const title = card.dataset.title || '';
+          const description = card.dataset.description || '';
+          const category = card.dataset.category || '';
+          const author = card.dataset.author || '';
+
+          const match =
+            title.includes(value) ||
+            description.includes(value) ||
+            category.includes(value) ||
+            author.includes(value);
+
+          card.style.display = match ? 'flex' : 'none';
+
+          if (match) {
+            visibleCount++;
+          }
+        });
+
+        resultCount.textContent =
+          visibleCount === 1
+            ? '1 Artikel gefunden'
+            : `${visibleCount} Artikel gefunden`;
+
+        emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+
+      searchInput.addEventListener('input', updateSearch);
+      updateSearch();
+    </script>
+  </main>
+</Layout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
+
+  :global(body) {
+    margin: 0;
+    background: #f4f1ec;
+    color: #151515;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .page {
+    min-height: 100vh;
+    padding: 24px 34px 60px;
+  }
+
+  .topbar {
+    height: 42px;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0,0,0,0.11);
+  }
+
+  .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.28rem;
+    letter-spacing: -0.02em;
+    color: #151515;
+    text-decoration: none;
+  }
+
+  .menu-wrap {
+    position: relative;
+  }
+
+  .menu-wrap summary {
+    list-style: none;
+  }
+
+  .menu-wrap summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .menu {
+    width: 34px;
+    height: 26px;
+    border: 0;
+    background: transparent;
+    display: grid;
+    gap: 4px;
+    cursor: pointer;
+    padding: 3px;
+  }
+
+  .menu span {
+    display: block;
+    height: 1.5px;
+    background: #151515;
+    border-radius: 999px;
+  }
+
+  .menu-panel {
+    position: absolute;
+    right: 0;
+    top: 42px;
+    z-index: 20;
+    width: 220px;
+    padding: 10px;
+    border-radius: 16px;
+    background: rgba(244,241,236,0.96);
+    border: 1px solid rgba(0,0,0,0.12);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.10);
+    backdrop-filter: blur(12px);
+  }
+
+  .menu-panel a {
+    display: block;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #151515;
+    text-decoration: none;
+  }
+
+  .menu-panel a:hover {
+    background: rgba(0,0,0,0.06);
+  }
+
+  .hero {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 62px 0 28px;
+  }
+
+  .eyebrow {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: #7a7168;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.8rem, 7vw, 6.8rem);
+    line-height: 0.9;
+    letter-spacing: -0.045em;
+    margin: 0;
+  }
+
+  .hero p {
+    max-width: 720px;
+    margin: 24px 0 0;
+    color: #6b6258;
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .search-wrap {
+    max-width: 1500px;
+    margin: 0 auto 14px;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.10);
+    background: rgba(255,255,255,0.38);
+    border-radius: 18px;
+    padding: 18px 22px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.035);
+  }
+
+  .search-wrap input::placeholder {
+    color: #8a8279;
+  }
+
+  .result-info {
+    max-width: 1500px;
+    margin: 0 auto 22px;
+  }
+
+  .result-info p {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.66rem;
+    font-weight: 700;
+    color: #7a7168;
+  }
+
+  .article-list {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    gap: 14px;
+  }
+
+  .article-card {
+    min-height: 112px;
+    padding: 22px 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.40);
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.045);
+    color: #151515;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .article-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 38px rgba(0,0,0,0.08);
+  }
+
+  .meta {
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-wrap: wrap;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.66rem;
+    font-weight: 700;
+    color: #7a7168;
+  }
+
+  .meta-topic {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--meta-color);
+  }
+
+  .meta-icon {
+    width: 15px;
+    height: 15px;
+    display: inline-flex;
+    color: var(--meta-color);
+    transform: translateY(-1px);
+  }
+
+  .meta-icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .meta-separator {
+    color: rgba(0,0,0,0.28);
+  }
+
+  .article-card h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.75rem, 2.5vw, 2.35rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin: 0 0 6px;
+    font-weight: 400;
+  }
+
+  .card-description {
+    max-width: 760px;
+    line-height: 1.4;
+    color: #5f5750;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .read-more {
+    font-weight: 800;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    padding-bottom: 2px;
+  }
+
+  .empty-state {
+    display: none;
+    max-width: 1500px;
+    margin: 18px auto 0;
+    padding: 28px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.35);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .empty-state p {
+    margin: 0 0 6px;
+    font-weight: 700;
+  }
+
+  .empty-state span {
+    color: #6b6258;
+  }
+
+  @media (max-width: 700px) {
+    .page {
+      padding: 18px;
+    }
+
+    .hero {
+      padding: 44px 0 26px;
+    }
+
+    .article-card {
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: auto;
+      padding: 24px;
+    }
+
+    .read-more {
+      align-self: flex-end;
+    }
+  }
+</style>
