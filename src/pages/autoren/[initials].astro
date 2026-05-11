@@ -1,1 +1,421 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
+export async function getStaticPaths() {
+  const authorList = {
+    rz: {
+      initials: 'RZ',
+      name: 'Robin Zimmer',
+      role: 'Redaktion, Technik, Wirtschaft und Analyse',
+    },
+  };
+
+  const articles = await getCollection('articles');
+
+  return Object.entries(authorList).map(([slug, author]) => {
+    const authorArticles = articles
+      .filter(
+        (article) =>
+          article.data.author.toLowerCase() === author.initials.toLowerCase()
+      )
+      .sort(
+        (a, b) =>
+          new Date(b.data.date).getTime() -
+          new Date(a.data.date).getTime()
+      );
+
+    return {
+      params: {
+        initials: slug,
+      },
+      props: {
+        author,
+        articles: authorArticles,
+      },
+    };
+  });
+}
+
+const { author, articles } = Astro.props;
+
+const categoryMeta: Record<string, { label: string; color: string }> = {
+  wirtschaft: {
+    label: 'WIRTSCHAFT',
+    color: '#7A5A13',
+  },
+  politik: {
+    label: 'POLITIK',
+    color: '#1F4C72',
+  },
+  'umwelt-klima': {
+    label: 'UMWELT & KLIMA',
+    color: '#315E3A',
+  },
+  sport: {
+    label: 'SPORT',
+    color: '#7A2A22',
+  },
+  'geschichte-kultur': {
+    label: 'GESCHICHTE & KULTUR',
+    color: '#5B3D22',
+  },
+  'technik-wissenschaft': {
+    label: 'TECHNIK-WISSENSCHAFT',
+    color: '#202020',
+  },
+  'mensch-tier': {
+    label: 'MENSCH & TIER',
+    color: '#743846',
+  },
+  tagebuch: {
+    label: 'TAGEBUCH',
+    color: '#746A60',
+  },
+};
+---
+
+<Layout>
+  <main class="page">
+    <header class="topbar">
+      <a href="/" class="brand">Project Byline</a>
+
+      <details class="menu-wrap">
+        <summary class="menu" aria-label="Menü">
+          <span></span>
+          <span></span>
+          <span></span>
+        </summary>
+
+        <nav class="menu-panel">
+          <a href="/suche">Suche</a>
+          <a href="/artikel">Alle Artikel</a>
+          <a href="/autoren">Autor:innen</a>
+          <a href="/ueber">Über Project Byline</a>
+        </nav>
+      </details>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">Autor:in</p>
+
+      <div class="author-head">
+        <div class="initials">{author.initials}</div>
+
+        <div>
+          <h1>{author.name}</h1>
+          <p>{author.role}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-head">
+      <p>Beiträge</p>
+      <h2>{articles.length} Artikel</h2>
+    </section>
+
+    <section class="article-list">
+      {articles.length > 0 ? (
+        articles.map((article) => {
+          const meta = categoryMeta[article.data.category] ?? {
+            label: article.data.category.toUpperCase(),
+            color: '#7a7168',
+          };
+
+          return (
+            <a
+              class="article-card"
+              href={`/artikel/${article.id.replace(/\.md$/, '')}`}
+            >
+              <p class="meta" style={`--meta-color:${meta.color};`}>
+                <span>{meta.label}</span>
+                <span class="meta-separator">·</span>
+                <span>{article.data.date}</span>
+              </p>
+
+              <h3>{article.data.title}</h3>
+
+              <p class="card-description">
+                {article.data.description}
+              </p>
+
+              <span class="read-more">Lesen →</span>
+            </a>
+          );
+        })
+      ) : (
+        <div class="empty-state">
+          <p>Noch keine Artikel vorhanden.</p>
+          <span>Hier erscheinen später alle Beiträge von {author.initials}.</span>
+        </div>
+      )}
+    </section>
+  </main>
+</Layout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
+
+  :global(body) {
+    margin: 0;
+    background: #f4f1ec;
+    color: #151515;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .page {
+    min-height: 100vh;
+    padding: 24px 34px 60px;
+  }
+
+  .topbar {
+    height: 42px;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0,0,0,0.11);
+  }
+
+  .brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.28rem;
+    letter-spacing: -0.02em;
+    color: #151515;
+    text-decoration: none;
+  }
+
+  .menu-wrap {
+    position: relative;
+  }
+
+  .menu-wrap summary {
+    list-style: none;
+  }
+
+  .menu-wrap summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .menu {
+    width: 34px;
+    height: 26px;
+    border: 0;
+    background: transparent;
+    display: grid;
+    gap: 4px;
+    cursor: pointer;
+    padding: 3px;
+  }
+
+  .menu span {
+    display: block;
+    height: 1.5px;
+    background: #151515;
+    border-radius: 999px;
+  }
+
+  .menu-panel {
+    position: absolute;
+    right: 0;
+    top: 42px;
+    z-index: 20;
+    width: 220px;
+    padding: 10px;
+    border-radius: 16px;
+    background: rgba(244,241,236,0.96);
+    border: 1px solid rgba(0,0,0,0.12);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.10);
+    backdrop-filter: blur(12px);
+  }
+
+  .menu-panel a {
+    display: block;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #151515;
+    text-decoration: none;
+  }
+
+  .menu-panel a:hover {
+    background: rgba(0,0,0,0.06);
+  }
+
+  .hero {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 62px 0 42px;
+  }
+
+  .eyebrow {
+    margin: 0 0 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: #7a7168;
+  }
+
+  .author-head {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+
+  .initials {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #151515;
+    color: #f4f1ec;
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.15rem;
+    letter-spacing: -0.04em;
+    flex-shrink: 0;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.4rem, 7vw, 6.4rem);
+    line-height: 0.9;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+
+  .hero p {
+    max-width: 720px;
+    margin: 14px 0 0;
+    color: #6b6258;
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .section-head {
+    max-width: 1500px;
+    margin: 0 auto 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0,0,0,0.12);
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+  }
+
+  .section-head p {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: #7a7168;
+  }
+
+  .section-head h2 {
+    margin: 0;
+    font-size: 0.96rem;
+    font-weight: 600;
+  }
+
+  .article-list {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    gap: 14px;
+  }
+
+  .article-card {
+    padding: 22px 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.40);
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.045);
+    color: #151515;
+    text-decoration: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .article-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 38px rgba(0,0,0,0.08);
+  }
+
+  .meta {
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-wrap: wrap;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.66rem;
+    font-weight: 700;
+    color: #7a7168;
+  }
+
+  .meta span:first-child {
+    color: var(--meta-color);
+  }
+
+  .meta-separator {
+    color: rgba(0,0,0,0.28);
+  }
+
+  .article-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.75rem, 2.5vw, 2.35rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin: 0 0 6px;
+    font-weight: 400;
+  }
+
+  .card-description {
+    max-width: 760px;
+    line-height: 1.4;
+    color: #5f5750;
+    margin: 0 0 12px;
+    font-size: 0.95rem;
+  }
+
+  .read-more {
+    font-weight: 800;
+    font-size: 0.95rem;
+  }
+
+  .empty-state {
+    padding: 28px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.35);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .empty-state p {
+    margin: 0 0 6px;
+    font-weight: 700;
+  }
+
+  .empty-state span {
+    color: #6b6258;
+  }
+
+  @media (max-width: 700px) {
+    .page {
+      padding: 18px;
+    }
+
+    .author-head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .initials {
+      width: 72px;
+      height: 72px;
+      font-size: 1.8rem;
+    }
+  }
+</style>
