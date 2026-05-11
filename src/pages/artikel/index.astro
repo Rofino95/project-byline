@@ -44,13 +44,8 @@ const sortedArticles = articles.sort(
     </header>
 
     <section class="hero">
-      <p class="eyebrow">Archiv</p>
-
       <h1>Alle Artikel</h1>
-
-      <p class="description">
-        Eine Übersicht aller veröffentlichten Beiträge auf Project Byline.
-      </p>
+      <p>Eine Übersicht aller veröffentlichten Beiträge auf Project Byline.</p>
     </section>
 
     <section class="search-wrap">
@@ -61,7 +56,7 @@ const sortedArticles = articles.sort(
       />
     </section>
 
-    <section class="article-list" id="articleList">
+    <section class="article-list">
       {sortedArticles.map((article) => (
         <a
           class="article-card"
@@ -70,20 +65,25 @@ const sortedArticles = articles.sort(
           data-description={article.data.description.toLowerCase()}
           data-category={article.data.category.toLowerCase()}
         >
-          <p
-            class="meta"
-            style={`color:${categoryColors[article.data.category]}`}
-          >
-            {article.data.category.toUpperCase()} · {article.data.date} · {article.data.author}
-          </p>
+          <div>
+            <p class="meta">
+              <span style={`color:${categoryColors[article.data.category]}`}>
+                {article.data.category.toUpperCase()}
+              </span>
+              <span>·</span>
+              <span>{article.data.date}</span>
+              <span>·</span>
+              <span>{article.data.author}</span>
+            </p>
 
-          <h2>{article.data.title}</h2>
+            <h2>{article.data.title}</h2>
 
-          <p class="card-description">
-            {article.data.description}
-          </p>
+            <p class="card-description">
+              {article.data.description}
+            </p>
+          </div>
 
-          <span class="read-more">→ Lesen</span>
+          <span class="read-more">Lesen →</span>
         </a>
       ))}
     </section>
@@ -105,7 +105,7 @@ const sortedArticles = articles.sort(
             description.includes(value) ||
             category.includes(value);
 
-          card.style.display = match ? 'block' : 'none';
+          card.style.display = match ? 'flex' : 'none';
         });
       });
     </script>
@@ -124,11 +124,13 @@ const sortedArticles = articles.sort(
 
   .page {
     min-height: 100vh;
-    padding: 24px;
+    padding: 24px 34px 60px;
   }
 
   .topbar {
     height: 42px;
+    max-width: 1500px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -202,38 +204,29 @@ const sortedArticles = articles.sort(
   }
 
   .hero {
-    max-width: 1200px;
-    margin: 0 auto 44px;
-    padding: 54px 0 34px;
-  }
-
-  .eyebrow {
-    margin: 0 0 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    font-size: 0.62rem;
-    font-weight: 700;
-    color: #7a7168;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 62px 0 28px;
   }
 
   h1 {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(4rem, 8vw, 7rem);
-    line-height: 0.88;
-    letter-spacing: -0.05em;
+    font-size: clamp(3.8rem, 7vw, 6.8rem);
+    line-height: 0.9;
+    letter-spacing: -0.045em;
     margin: 0;
   }
 
-  .description {
-    max-width: 700px;
-    margin-top: 22px;
-    line-height: 1.7;
+  .hero p {
+    max-width: 720px;
+    margin: 24px 0 0;
     color: #6b6258;
-    font-size: 1.15rem;
+    font-size: 1.08rem;
+    line-height: 1.7;
   }
 
   .search-wrap {
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto 34px;
   }
 
@@ -247,53 +240,75 @@ const sortedArticles = articles.sort(
     font-family: 'Inter', sans-serif;
     outline: none;
     box-sizing: border-box;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.035);
+  }
+
+  .search-wrap input::placeholder {
+    color: #8a8279;
   }
 
   .article-list {
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
+    display: grid;
+    gap: 14px;
   }
 
   .article-card {
-    display: block;
-    padding: 34px 0;
-    border-top: 1px solid rgba(0,0,0,0.10);
+    min-height: 150px;
+    padding: 28px 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.40);
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.045);
     color: #151515;
     text-decoration: none;
-    transition: opacity 0.18s ease;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
 
   .article-card:hover {
-    opacity: 0.72;
+    transform: translateY(-3px);
+    box-shadow: 0 16px 38px rgba(0,0,0,0.08);
   }
 
   .meta {
-    margin: 0 0 16px;
+    margin: 0 0 14px;
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
     text-transform: uppercase;
     letter-spacing: 0.16em;
     font-size: 0.68rem;
     font-weight: 700;
+    color: #7a7168;
   }
 
   h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.2rem, 5vw, 4rem);
-    line-height: 0.95;
-    letter-spacing: -0.05em;
-    margin: 0 0 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.45rem, 2.2vw, 2rem);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    margin: 0 0 12px;
+    font-weight: 800;
   }
 
   .card-description {
     max-width: 760px;
-    line-height: 1.7;
+    line-height: 1.55;
     color: #5f5750;
-    margin: 0 0 18px;
-    font-size: 1.05rem;
+    margin: 0;
+    font-size: 1rem;
   }
 
   .read-more {
-    font-weight: 700;
+    font-weight: 800;
     font-size: 0.95rem;
+    white-space: nowrap;
+    padding-bottom: 2px;
   }
 
   @media (max-width: 700px) {
@@ -301,8 +316,19 @@ const sortedArticles = articles.sort(
       padding: 18px;
     }
 
-    h2 {
-      font-size: 2.4rem;
+    .hero {
+      padding: 44px 0 26px;
+    }
+
+    .article-card {
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: auto;
+      padding: 24px;
+    }
+
+    .read-more {
+      align-self: flex-end;
     }
   }
 </style>
