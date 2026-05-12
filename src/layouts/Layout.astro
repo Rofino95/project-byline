@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
 	<head>
 		<meta charset="UTF-8" />
 
@@ -30,6 +30,12 @@
 
 	<body>
 		<slot />
+
+		<script>
+			import { inject } from '@vercel/analytics';
+
+			inject();
+		</script>
 	</body>
 </html>
 
