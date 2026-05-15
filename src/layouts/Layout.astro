@@ -7,25 +7,22 @@ import Analytics from '@vercel/analytics/astro';
 	<head>
 		<meta charset="UTF-8" />
 
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
+		<script is:inline>
+			const savedTheme = localStorage.getItem('theme');
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
+			if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+				document.documentElement.dataset.theme = 'dark';
+			}
+		</script>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta
 			name="description"
 			content="Independent journalistic space covering culture, technology, politics, economy and human stories."
 		/>
-
-		<meta
-			name="theme-color"
-			content="#f4f1ec"
-		/>
-
-		<meta
-			name="generator"
-			content={Astro.generator}
-		/>
+		<meta name="theme-color" content="#171614" />
+		<meta name="generator" content={Astro.generator} />
 
 		<link rel="icon" href="/favicon.ico" />
 
@@ -36,12 +33,45 @@ import Analytics from '@vercel/analytics/astro';
 		<slot />
 
 		<Analytics />
+
+		<script is:inline>
+			const buttons = document.querySelectorAll('[data-theme-toggle]');
+
+			function updateButtons() {
+				const isDark = document.documentElement.dataset.theme === 'dark';
+				buttons.forEach((button) => {
+					button.textContent = isDark ? 'Heller Modus' : 'Dunkler Modus';
+				});
+			}
+
+			buttons.forEach((button) => {
+				button.addEventListener('click', () => {
+					const isDark = document.documentElement.dataset.theme === 'dark';
+
+					if (isDark) {
+						delete document.documentElement.dataset.theme;
+						localStorage.setItem('theme', 'light');
+					} else {
+						document.documentElement.dataset.theme = 'dark';
+						localStorage.setItem('theme', 'dark');
+					}
+
+					updateButtons();
+				});
+			});
+
+			updateButtons();
+		</script>
 	</body>
 </html>
 
 <style>
 	:root {
 		color-scheme: light;
+	}
+
+	html[data-theme='dark'] {
+		color-scheme: dark;
 	}
 
 	html {
@@ -56,10 +86,19 @@ import Analytics from '@vercel/analytics/astro';
 		background: #f4f1ec;
 		color: #151515;
 		overflow-x: hidden;
-
 		text-rendering: optimizeLegibility;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+		overflow-x: hidden;
+  		transition:
+    		background-color 0.45s ease,
+    		color 0.45s ease;
+	}
+
+	html[data-theme='dark'],
+	html[data-theme='dark'] body {
+		background: #171614;
+		color: #eee7dc;
 	}
 
 	* {
