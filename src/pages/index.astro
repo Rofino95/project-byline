@@ -597,12 +597,12 @@ const topics = [
 }
 
 .theme-sun {
-  opacity: 0;
+  opacity: 1;
   transform: translateY(12px) rotate(-30deg);
 }
 
 .theme-moon {
-  opacity: 1;
+  opacity: 0;
   transform: translateY(0) rotate(0);
 }
 
@@ -613,14 +613,55 @@ const topics = [
 }
 
 :global(html[data-theme='dark']) .theme-sun {
+  opacity: 0;
+  transform: translateY(12px) rotate(-30deg);
+}
+
+:global(html[data-theme='dark']) .theme-moon {
   opacity: 1;
   transform: translateY(0) rotate(0);
 }
 
-:global(html[data-theme='dark']) .theme-moon {
-  opacity: 0;
-  transform: translateY(-12px) rotate(30deg);
+/* Dark Mode Feinschliff */
+
+:global(html[data-theme='dark']) .menu span {
+  background: #eee7dc;
 }
 
+:global(html[data-theme='dark']) .theme-toggle {
+  width: 46px;
+  height: 28px;
+  background: rgba(238,231,220,0.08);
+  border-color: rgba(238,231,220,0.22);
+  color: #eee7dc;
+}
+
+:global(html[data-theme='dark']) .topic-card {
+  filter: brightness(0.82) saturate(0.92);
+}
+
+:global(html[data-theme='dark']) .daily-article-card {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.075), rgba(0,0,0,0.18)),
+    #211f1b;
+  border-color: rgba(238,231,220,0.14);
+  color: #eee7dc;
+}
+
+:global(html[data-theme='dark']) .daily-article-card h3 {
+  color: #eee7dc;
+}
+
+:global(html[data-theme='dark']) .daily-article-card p {
+  color: #bdb2a3;
+}
+
+:global(html[data-theme='dark']) .daily-article-card .daily-meta {
+  color: #d6b982;
+}
+
+:global(html[data-theme='dark']) .daily-article-card span {
+  color: #eee7dc;
+}
 
 </style>
