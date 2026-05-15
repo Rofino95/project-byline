@@ -67,14 +67,6 @@ Für die Waräger wiederum war der Dienst in Konstantinopel eine Chance auf Reic
  
 Dass ein römischer Kaiser seine persönliche Sicherheit Männern vom anderen Ende Europas anvertraute, zeigt die enorme Reichweite dieser Stadt. Konstantinopel war nicht nur Hauptstadt eines Reiches. Es war ein Magnet.
  
-## Diplomatie statt Dauerkrieg
- 
-Byzanz kämpfte nicht immer, wenn es kämpfen konnte. Oft war es klüger, Gegner zu bestechen, Bündnisse zu verschieben, Feinde gegeneinander auszuspielen oder Zeit zu gewinnen. In der byzantinischen Außenpolitik galt Diplomatie nicht als Schwäche, sondern als Werkzeug.
- 
-Das Reich war von vielen Seiten bedroht: Araber, Bulgaren, Petschenegen, Normannen, später Seldschuken und Kreuzfahrer. Kein Staat überlebt in einer solchen Lage nur durch Schlachten. Byzanz überlebte so lange, weil es Krieg als Problem behandelte, für das es verschiedene Lösungen gab. Manchmal war die Lösung eine Armee. Manchmal ein Vertrag. Manchmal Gold. Manchmal eine Heirat. Und manchmal die einfache Frage, ob der Gegner nicht gerade einen anderen Feind gebrauchen könnte.
- 
-Macht bestand nicht nur aus Truppenstärke, sondern aus Information, Geduld und dem richtigen Timing.
- 
 ## Herr des Bosporus, Herr des Handels
  
 Wer den Bosporus kontrolliert, kontrolliert den Seeweg zwischen Schwarzem Meer und Mittelmeer. Im frühen Mittelalter bedeutete das: Zugang zu einem der wichtigsten Handelsräume der Welt. Konstantinopel war nicht nur eine Stadt. Es war ein Nadelöhr, durch das Waren, Menschen, Nachrichten und Geld flossen.
