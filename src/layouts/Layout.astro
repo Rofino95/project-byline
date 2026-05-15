@@ -39,8 +39,12 @@ import Analytics from '@vercel/analytics/astro';
 
 			function updateButtons() {
 				const isDark = document.documentElement.dataset.theme === 'dark';
+
 				buttons.forEach((button) => {
-					button.textContent = isDark ? 'Heller Modus' : 'Dunkler Modus';
+					button.setAttribute(
+						'aria-label',
+						isDark ? 'Hellen Modus aktivieren' : 'Dunklen Modus aktivieren'
+					);
 				});
 			}
 
