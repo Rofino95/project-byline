@@ -295,7 +295,7 @@ const topics = [
     margin: 0 auto;
     padding: 52px 0 58px;
     text-align: center;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .hero::before {
@@ -589,8 +589,12 @@ const topics = [
 
 .theme-icon {
   position: absolute;
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   line-height: 1;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
   transition:
     opacity 0.35s ease,
     transform 0.35s ease;
