@@ -1,6 +1,6 @@
 ---
 title: "Konstantinopel: Die vergessene Weltstadt"
-description: Ein Blick auf eine Metropole, die im westlichen Geschichtsbild oft zu kurz kommt."
+description: Ein Blick auf eine Metropole, die im westlichen Geschichtsbild oft zu kurz kommt.
 date: "2026-05-11"
 category: "geschichte-kultur"
 author: "RZ"
@@ -110,13 +110,3 @@ Beides gehört zum Mittelalter. Nur hat es meist eine dieser Perspektiven viel l
 Konstantinopel erinnert daran, dass Fortschritt kein gerader Weg ist. Zivilisation ist kein Besitz, den eine Gesellschaft einmal erwirbt und dann für immer behält. Sie ist eine Leistung, die Wissen, Institutionen, Technik, Verwaltung und politische Stabilität braucht. Und sie kann verschwinden.
  
 1453 fiel Konstantinopel. Aber lange vorher war die Stadt etwas, das man heute viel zu selten mit dem Mittelalter verbindet: ein urbanes Weltzentrum.
- 
-## Quellenbasis
- 
-1. Cyril Mango (Hrsg.), „The Oxford History of Byzantium". Grundlegende Einordnung des byzantinischen Reiches, städtische Infrastruktur Konstantinopels, kaiserliche Verwaltung und Bevölkerungsschätzungen.
-2. Warren Treadgold, „A History of the Byzantine State and Society". Byzantinische Staatsinstitutionen, Bildungswesen, kaiserliche Bibliothek und Verwaltungskontinuität gegenüber dem lateinischen Westen.
-3. John Haldon, „Byzantium: A History". Militärische Strukturen, Marinekapazität, griechisches Feuer und wirtschaftliche Grundlagen des Reiches.
-4. Angeliki Laiou und Cécile Morrisson, „The Byzantine Economy". Byzantinischer Handel, Goldwährung, Märkte am Goldenen Horn und die Rolle Konstantinopels im eurasischen Fernhandel.
-5. Paul Magdalino, Beiträge zur byzantinischen Hauptstadtkultur. Intellektuelle Praxis, Patriarch Photios, Hochschultradition und soziale Einrichtungen in Konstantinopel.
-6. Eric McGeer, „Sowing the Dragon's Teeth: Byzantine Warfare in the Tenth Century". Byzantinische Landkriegsführung, Themensystem, Militärhandbücher und Taktik gegen verschiedene Gegner.
-7. Sigfús Blöndal und Benedikt S. Benedikz, „The Varangians of Byzantium". Geschichte und Rolle der Warägergarde, ihre Zusammensetzung aus nordischen Kriegern und ihre Bedeutung für die byzantinische Sicherheitspolitik.
