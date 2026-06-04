@@ -418,10 +418,10 @@ const articleItems = articles
   .meta {
     margin: 0 0 28px;
     min-height: 20px;
-    display: grid;
-    grid-template-columns: minmax(170px, 1fr) auto auto auto auto;
+    display: flex;
     align-items: center;
-    column-gap: 9px;
+    gap: 9px;
+    flex-wrap: nowrap;
     text-transform: uppercase;
     letter-spacing: 0.16em;
     font-size: 0.66rem;
@@ -429,12 +429,46 @@ const articleItems = articles
     color: #7a7168;
   }
 
-  .meta span:first-child {
+  .meta-topic {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--category-color);
+  }
+
+  .meta-icon {
+    width: 15px;
+    height: 15px;
+    min-width: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(0);
+  }
+
+  .meta-icon :global(svg) {
+    width: 15px;
+    height: 15px;
+    display: block;
+    stroke: currentColor;
+  }
+
+  .meta-topic {
     color: var(--category-color);
   }
 
   .meta-separator {
     color: rgba(0,0,0,0.28);
+  }
+
+  .random-card h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 2.6vw, 2.35rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin: 0 0 18px;
+    font-weight: 400;
+    min-height: 86px;
   }
 
   .card-description {
@@ -443,13 +477,6 @@ const articleItems = articles
     margin: 0;
     font-size: 0.98rem;
     min-height: 48px;
-  }
-
-  .card-description {
-    color: #5f5750;
-    line-height: 1.5;
-    margin: 0;
-    font-size: 0.98rem;
   }
 
   .read-more {
