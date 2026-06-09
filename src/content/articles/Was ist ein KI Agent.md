@@ -3,7 +3,7 @@ title: "Wenn KI anfängt zu handeln"
 description: Was KI-Agenten von Chatbots wirklich unterscheidet.
 date: "2026-06-10"
 category: "technik-wissenschaft"
-author: "Project Byline"
+author: "RZ"
 featured: false
 ---
 
